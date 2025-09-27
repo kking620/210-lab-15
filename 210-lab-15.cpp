@@ -53,22 +53,22 @@ int main()
 
     ifstream fin ("input.txt");
 
-    string title;
-    string screenWriter;
-    int year;
+    string t;
+    string sw;
+    int y;
 
     if (fin.good())
     {
-        while ( fin.good())
+        while (getline(fin, t))
         {
-            getline(fin, title);
+            fin >> y;
             fin.ignore();
-            fin >> year;
-            getline(fin, screenWriter);
+            getline(fin, sw);
+
             Movie temp;
-            temp.setmTitle(title);
-            temp.setmRelease(year);
-            temp.setmScreenWriter(screenWriter);
+            temp.setmTitle(t);
+            temp.setmRelease(y);
+            temp.setmScreenWriter(sw);
             movies_v.push_back(temp);
         }
         fin.close();
@@ -77,9 +77,7 @@ int main()
         cout << "Input file not found.\n";
 
     for (auto val : movies_v)
-    {
-        cout << val.print() << endl;
-    }
+        val.print();
 
     cout << endl;
 
